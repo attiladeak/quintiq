@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by attila.deak on 8/5/2016.
  */
@@ -34,6 +37,28 @@ public class DriverHelper {
             }
         }
         return pmNr;
+    }
+
+    public ArrayList<Integer> sameDayViolations(Driver driver){
+        ArrayList<Integer> amShifts = new ArrayList<Integer>();
+        HashMap<Integer, Shift> driverCal = driver.getDriverCalendar();
+        for(Integer shiftNr : driverCal.keySet()){
+            if(shiftNr%2 == 0 && driverCal.get(shiftNr).isTaken() && driverCal.get(shiftNr + 1).isTaken()){
+                amShifts.add(shiftNr);
+            }
+        }
+        return amShifts;
+    }
+
+    public ArrayList<Integer> overnightViolations(Driver driver){
+        ArrayList<Integer> amShifts = new ArrayList<Integer>();
+        HashMap<Integer, Shift> driverCal = driver.getDriverCalendar();
+        for(Integer shiftNr : driverCal.keySet()){
+            if(shiftNr%2 != 0 && driverCal.get(shiftNr).isTaken() && driverCal.get(shiftNr + 1).isTaken()){
+                amShifts.add(shiftNr);
+            }
+        }
+        return amShifts;
     }
 
 
