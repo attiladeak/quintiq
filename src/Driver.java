@@ -22,7 +22,7 @@ public class Driver {
 
         this.driverCalendar = new HashMap<Integer, Shift>();
 
-        for(int i=0; i<24; i++){
+        for(int i=0; i<28; i++){
             this.driverCalendar.put(i,new Shift());
         }
 
